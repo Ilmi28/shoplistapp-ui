@@ -1,6 +1,6 @@
 ﻿import { apiClient } from './apiClient';
-import type { LoginFormData, RegisterFormData } from "../types/AuthTypes.ts";
-import type { ApiResponse } from "../types/ApiResponse.ts";
+import type { LoginFormData, RegisterFormData } from "@/types/AuthTypes.ts";
+import type { ApiResponse } from "@/types/ApiResponse.ts";
 
 export async function login(loginData: LoginFormData) {
     const response = await apiClient.post('api/auth/login', loginData);
