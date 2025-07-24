@@ -1,13 +1,13 @@
 ﻿import {Menu, Portal} from "@chakra-ui/react";
-import {DefaultButton} from "@/components/ui/buttons.tsx";
+import {OutlineButton} from "@/components/ui/buttons.tsx";
 
 export const MyAccount = () => {
     return (
         <Menu.Root>
             <Menu.Trigger asChild>
-                <DefaultButton variant="outline" size="sm">
+                <OutlineButton variant="outline" size="sm">
                     My Account
-                </DefaultButton>
+                </OutlineButton>
             </Menu.Trigger>
             <Portal>
                 <Menu.Positioner>

@@ -1,6 +1,6 @@
 ﻿import { apiClient } from './apiClient';
 import type { LoginFormData, RegisterFormData } from "@/types/AuthTypes.ts";
-import type { ApiResponse } from "@/types/ApiResponse.ts";
+import type { ApiTypes } from "@/types/ApiTypes.ts";
 
 export async function login(loginData: LoginFormData) {
     const response = await apiClient.post('api/auth/login', loginData);
@@ -9,21 +9,21 @@ export async function login(loginData: LoginFormData) {
     };
 }
 
-export async function logout(): Promise<ApiResponse<void>> {
+export async function logout(): Promise<ApiTypes<void>> {
     const response = await apiClient.post('api/auth/logout');
     return {
         status: response.status,
     }
 }
 
-export async function register(registerData: RegisterFormData): Promise<ApiResponse<void>> {
+export async function register(registerData: RegisterFormData): Promise<ApiTypes<void>> {
     const response = await apiClient.post('api/auth/register', registerData);
     return {
         status: response.status,
     }
 }
 
-export async function refresh(): Promise<ApiResponse<void>> {
+export async function refresh(): Promise<ApiTypes<void>> {
     const response = await apiClient.post('api/auth/refresh');
     return {
         status: response.status,

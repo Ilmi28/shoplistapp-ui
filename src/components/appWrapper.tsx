@@ -2,7 +2,7 @@
 import { Box } from "@chakra-ui/react";
 
 export const AppWrapper = ({ children }: { children: React.ReactNode }) => {
-    const bg = useColorModeValue("white", "gray.800");
+    const bg = useColorModeValue("white", "gray.900");
 
     return (
         <Box minHeight="100vh"

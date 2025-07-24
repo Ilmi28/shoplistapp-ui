@@ -1,9 +1,30 @@
 ﻿import {Button, type ButtonProps} from "@chakra-ui/react";
 import {useColorModeValue} from "@/components/ui/color-mode.tsx";
 
-export const DefaultButton = ({children, ...props}: ButtonProps) => {
-    const colorPalette = useColorModeValue("yellow", "red");
-    const variant = useColorModeValue("outline", "outline");
+interface AppButtonProps extends ButtonProps {
+    href?: string | null;
+}
 
-    return <Button colorPalette={colorPalette} variant={variant} {...props}>{children}</Button>
+export const OutlineButton = ( {children, ...props}: AppButtonProps) => {
+    const colorPalette = useColorModeValue("yellow", "red");
+
+    return <AppButton colorPalette={colorPalette} variant="outline" {...props}>{children}</AppButton>
+}
+
+export const NavbarButton = ( {children, ...props}: AppButtonProps) => {
+    const colorPalette = useColorModeValue("yellow", "red");
+
+    return <AppButton colorPalette={colorPalette} variant="ghost" {...props}>{children}</AppButton>
+}
+
+const AppButton = ({href, children, ...props} : AppButtonProps) => {
+    return (
+        href ? (
+            <Button asChild {...props}>
+                <a href={href}>{children}</a>
+            </Button>
+        ) : (
+            <Button {...props}>{children}</Button>
+        )
+    )
 }

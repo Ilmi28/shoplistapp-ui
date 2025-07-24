@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import {useColorModeValue} from "@/components/ui/color-mode.tsx";
 
 export const Footer = () => {
-    const backgroundColor = useColorModeValue("gray.100", "gray.900");
+    const backgroundColor = useColorModeValue("gray.100", "gray.950");
 
     return (
         <Flex
@@ -19,10 +19,10 @@ export const Footer = () => {
             <Text>&copy; {new Date().getFullYear()} ShopListApp. All rights reserved.</Text>
 
             <Flex gap="4">
-                <Link href="https://github.com/yourprofile">
+                <Link href="https://github.com/Ilmi28" target="_blank" rel="noopener noreferrer">
                     <Icon as={FaGithub} boxSize="5" />
                 </Link>
-                <Link href="https://linkedin.com/in/yourprofile">
+                <Link href="https://www.linkedin.com/in/ilmi-aliev-67240727a" target="_blank" rel="noopener noreferrer">
                     <Icon as={FaLinkedin} boxSize="5" />
                 </Link>
             </Flex>
