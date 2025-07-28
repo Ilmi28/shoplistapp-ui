@@ -29,3 +29,4 @@ export const FormPasswordInput = ({placeholder, icon, errMessage, ...props} : Fo
         </Flex>
     )
 }
+

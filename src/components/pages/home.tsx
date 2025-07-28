@@ -1,4 +1,4 @@
-﻿import { Navbar } from "@/components/ui/navbar/navbar.tsx";
+﻿import { Navbar } from "@/components/ui/navbar.tsx";
 import {Flex} from "@chakra-ui/react";
 import {Footer} from "@/components/ui/footer.tsx";
 
