@@ -8,7 +8,7 @@ export const Footer = () => {
     return (
         <Flex
             as="footer"
-            height="10vh"
+            height="100px"
             width="100%"
             px="6"
             align="center"

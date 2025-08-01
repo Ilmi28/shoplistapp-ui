@@ -36,6 +36,7 @@ export const RegisterForm = ({onRegister}: Props) => {
             const apiError = err as AxiosError;
             if (apiError?.status === 409) {
                 console.log(apiError)
+                // @ts-ignore
                 setError("password", {message: apiError.response?.data?.detail});
             } else {
                 setError("password", {message: "Something went wrong! Try again later"});

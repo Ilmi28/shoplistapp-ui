@@ -6,7 +6,7 @@ export const AppWrapper = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <Box minHeight="100vh"
-             minWidth="100vw"
+             minWidth="100%"
              bg={bg}
              transition="background-color 200ms ease">
             {children}

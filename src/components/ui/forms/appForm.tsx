@@ -20,7 +20,7 @@ export const AppForm = ({children, onSubmit, buttonName} : Props) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Flex width="100vw" flexDirection="column" alignItems="center">
+            <Flex width="100%" flexDirection="column" alignItems="center">
                 <Flex width="400px" gap="5" flexDirection="column">
                     {children}
                 </Flex>

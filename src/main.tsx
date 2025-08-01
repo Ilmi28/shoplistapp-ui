@@ -5,6 +5,7 @@ import App from './App.tsx'
 import {AppWrapper} from "@/components/appWrapper.tsx";
 import {BrowserRouter} from "react-router-dom";
 import {AuthProvider} from "@/context/auth/authProvider.tsx";
+import "./index.css"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
