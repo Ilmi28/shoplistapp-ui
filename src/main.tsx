@@ -6,6 +6,7 @@ import {AppWrapper} from "@/components/appWrapper.tsx";
 import {BrowserRouter} from "react-router-dom";
 import {AuthProvider} from "@/context/auth/authProvider.tsx";
 import "./index.css"
+import {Toaster} from "@/components/ui/toaster.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
               <BrowserRouter>
                   <AuthProvider>
                     <App/>
+                      <Toaster />
                   </AuthProvider>
               </BrowserRouter>
           </AppWrapper>

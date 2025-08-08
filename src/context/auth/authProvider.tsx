@@ -8,40 +8,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState<GetUserData | null>(null);
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                const response = await getUser();
-                console.log(response);
-                if (response.status === 200) {
-                    setIsLoggedIn(true);
-                    setUser(response.data ?? null);
-                } else {
-                    setIsLoggedIn(false);
-                    setUser(null);
-                }
-            } catch {
-                setIsLoggedIn(false);
-                setUser(null);
-            }
-        }
-
-        const refreshToken = async () => {
-            try {
-                await refresh();
+        const tryRefresh = async () => {
+            const refreshResponse = await refresh();
+            if (refreshResponse.status === 204) {
+                const userResponse = await getUser();
                 setIsLoggedIn(true);
-            } catch {
-                setIsLoggedIn(false);
-                setUser(null);
+                setUser(userResponse.data ?? null);
             }
         }
-
-        checkAuth().catch(err => console.log(err));
-        refreshToken().catch(err => console.log(err));
+        setLoading(true);
+        tryRefresh().catch(() => {
+            setIsLoggedIn(false);
+            setUser(null);
+        }).finally(() => setLoading(false));
     }, []);
 
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser }}>
+        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, loading }}>
             {children}
         </AuthContext.Provider>
     );

@@ -2,25 +2,32 @@
 import {LoginForm} from "@/components/ui/forms/loginForm.tsx";
 import {login} from "@/api/authApi.ts";
 import {useAuth} from "@/hooks/useAuth.ts";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Navbar} from "@/components/ui/navbar.tsx";
 import {Flex} from "@chakra-ui/react";
 import {Footer} from "@/components/ui/footer.tsx";
+import {getUser} from "@/api/userApi.ts";
+import {useEffect} from "react";
 
 export const Login = () => {
-    const {isLoggedIn, setIsLoggedIn} = useAuth()
+    const {isLoggedIn, setIsLoggedIn, setUser} = useAuth()
     const navigate = useNavigate();
 
     const onLogin = async ({userIdentifier, password} : {userIdentifier: string, password: string}) => {
         await login({userIdentifier, password});
         setIsLoggedIn(true);
-        navigate("")
+        const response = await getUser();
+        setUser(response.data ?? null);
+        navigate("/")
     }
-    if (isLoggedIn)
-        return <Navigate to="/" />
+
+    useEffect(() => {
+        if (isLoggedIn)
+            navigate("/");
+    })
 
     return (
-        <Flex flexDirection="column" height="100vh">
+        <Flex flexDirection="column" minHeight="100vh" alignItems="center">
             <Navbar />
             <PageTitle>Login</PageTitle>
             <LoginForm onLogin={onLogin} />

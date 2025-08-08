@@ -30,3 +30,13 @@ export const FormPasswordInput = ({placeholder, icon, errMessage, ...props} : Fo
     )
 }
 
+export const EditableFormInput = ({placeholder, icon, errMessage, ...props} : FormInputProps) => {
+    return (
+        <Flex flexDirection="column" gap="1">
+            <InputGroup startElement={icon}>
+                <Input variant="flushed" placeholder={placeholder} {...props}/>
+            </InputGroup>
+            {errMessage && <Text textStyle="xs" color="red.500">{errMessage}</Text>}
+        </Flex>
+    )
+}

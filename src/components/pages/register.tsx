@@ -20,7 +20,7 @@ export const Register = () => {
         return <Navigate to="/" />
 
     return (
-        <Flex flexDirection="column" height="100vh">
+        <Flex flexDirection="column" minHeight="100vh" alignItems="center">
             <Navbar />
             <PageTitle>Register</PageTitle>
             <RegisterForm onRegister={handleRegister}/>

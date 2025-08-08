@@ -4,7 +4,7 @@ import {Footer} from "@/components/ui/footer.tsx";
 
 export const Home = () => {
     return (
-        <Flex flexDirection="column" height="100vh" overflow="hidden">
+        <Flex flexDirection="column" minHeight="100vh">
             <Navbar />
             <Flex flex="1"/>
             <Footer />

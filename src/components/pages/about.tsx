@@ -6,7 +6,7 @@ import {Footer} from "@/components/ui/footer.tsx";
 
 export const About = () => {
     return (
-        <Flex flexDirection="column" height="100vh" alignItems="center">
+        <Flex flexDirection="column" minHeight="100vh" alignItems="center">
             <Navbar />
             <PageTitle>About</PageTitle>
             <Text width="500px" mt="100px"></Text>

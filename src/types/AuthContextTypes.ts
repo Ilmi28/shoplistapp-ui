@@ -5,4 +5,5 @@ export type AuthContextType = {
     setIsLoggedIn: (loggedIn: boolean) => void;
     user: GetUserData | null;
     setUser: (user: GetUserData | null) => void;
+    loading: boolean;
 };

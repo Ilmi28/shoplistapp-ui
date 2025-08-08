@@ -1,13 +1,18 @@
 import * as yup from "yup";
-import {AppForm} from "@/components/ui/forms/appForm.tsx";
 import { yupResolver } from "@hookform/resolvers/yup"
 import {useForm} from "react-hook-form";
-import {FormInput, FormPasswordInput} from "@/components/ui/formUtils.tsx";
+import {FormInput, FormPasswordInput} from "@/components/ui/forms/formUtils.tsx";
 import {LuLock, LuUser, LuMail} from "react-icons/lu";
 import type {AxiosError} from "axios";
+import {Flex} from "@chakra-ui/react";
+import {OutlineButton} from "@/components/ui/buttons.tsx";
+import {useState} from "react";
 
 const schema = yup.object({
-    username: yup.string().required("Username is required"),
+    username: yup.string()
+        .min(3, "Username's min length is 3")
+        .max(50, "Username's max length is 50")
+        .required("Username is required"),
     email: yup.string().email("Email must be a valid email").required("Email is required"),
     password: yup.string().required("Password is required").matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -22,6 +27,8 @@ interface Props {
 type FormFields = yup.InferType<typeof schema>
 
 export const RegisterForm = ({onRegister}: Props) => {
+    const [loading, setLoading] = useState<boolean>(false);
+
     const {
         register,
         handleSubmit,
@@ -31,6 +38,7 @@ export const RegisterForm = ({onRegister}: Props) => {
 
     const onSubmit = async (data: FormFields): Promise<void> => {
         try {
+            setLoading(true);
             await onRegister(data);
         } catch(err) {
             const apiError = err as AxiosError;
@@ -41,14 +49,21 @@ export const RegisterForm = ({onRegister}: Props) => {
             } else {
                 setError("password", {message: "Something went wrong! Try again later"});
             }
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
-        <AppForm onSubmit={handleSubmit(onSubmit)} buttonName="Register">
-            <FormInput {...register("username")} icon={<LuUser />} errMessage={errors.username?.message}/>
-            <FormInput {...register("email")} icon={<LuMail />} errMessage={errors.email?.message}/>
-            <FormPasswordInput {...register("password")} icon={<LuLock />} errMessage={errors.password?.message}/>
-        </AppForm>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Flex width="100%" flexDirection="column" alignItems="center">
+                <Flex width="400px" gap="5" flexDirection="column">
+                    <FormInput {...register("username")} icon={<LuUser />} errMessage={errors.username?.message}/>
+                    <FormInput {...register("email")} icon={<LuMail />} errMessage={errors.email?.message}/>
+                    <FormPasswordInput {...register("password")} icon={<LuLock />} errMessage={errors.password?.message}/>
+                </Flex>
+                <OutlineButton mt="50px" type="submit" loading={loading}>Register</OutlineButton>
+            </Flex>
+        </form>
     )
 }

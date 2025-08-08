@@ -3,6 +3,7 @@ import {Home} from "@/components/pages/home.tsx";
 import {Login} from "@/components/pages/login.tsx";
 import {Register} from "@/components/pages/register.tsx";
 import {About} from "@/components/pages/about.tsx";
+import {Settings} from "@/components/pages/settings.tsx";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
             <Route path="/login" Component={Login} />
             <Route path="/register" Component={Register} />
             <Route path="/about" Component={About} />
+            <Route path="/settings" Component={Settings} />
         </Routes>
   )
 }
